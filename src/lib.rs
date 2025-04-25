@@ -1,14 +1,32 @@
-pub fn nrt(radicand: f64, root: f64) -> f64 {
-    radicand.powf(1.0 / root)
+pub fn nrt(radicand: impl Into<f64>, root: impl Into<f64>) -> f64 {
+    radicand.into().powf(1.0 / root.into())
+}
+
+pub fn sqrt(radicand: impl Into<f64>) -> f64 {
+    radicand.into().sqrt()
+}
+
+pub fn cbrt(radicand: impl Into<f64>) -> f64 {
+    nrt(radicand, 3)
 }
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    #[test]
+    fn nrt() {
+        let result = super::nrt(243, 5);
+        assert_eq!(result, 3_f64);
+    }
 
     #[test]
-    fn it_works() {
-        let result = nrt(8.0, 3.0);
-        assert_eq!(result, 2.0);
+    fn sqrt() {
+        let result = super::sqrt(4);
+        assert_eq!(result, 2_f64);
+    }
+
+    #[test]
+    fn cbrt() {
+        let result = super::cbrt(8);
+        assert_eq!(result, 2_f64);
     }
 }
