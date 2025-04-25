@@ -1,5 +1,5 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
+pub fn nrt(radicand: f64, root: f64) -> f64 {
+    radicand.powf(1.0 / root)
 }
 
 #[cfg(test)]
@@ -8,7 +8,7 @@ mod tests {
 
     #[test]
     fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+        let result = nrt(8.0, 3.0);
+        assert_eq!(result, 2.0);
     }
 }
